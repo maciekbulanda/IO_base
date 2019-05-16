@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Plik">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#loadButtonAction" text="Otwórz">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#saveButtonAction" text="Zapisz">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" text="Wyjście">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane prefHeight="500.0" prefWidth="1100.0" side="LEFT">
+         <tabs>
+            <Tab closable="false" text="Napędy">
+               <content>
+                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="600.0" prefHeight="400.0" prefWidth="1000.0">
+                     <left>
+                        <VBox alignment="TOP_RIGHT" prefHeight="335.0" prefWidth="210.0" spacing="5.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox spacing="3.0">
+                                 <children>
+                                    <TextField fx:id="unitNameText" />
+                                  <Button fx:id="addButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#addButtonAction" prefWidth="25.0" text="+" />
+                                    <Button fx:id="removeButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeButtonAction" prefWidth="25.0" text="-" />
+                                 </children>
+                              </HBox>
+                              <ListView fx:id="unitListView" VBox.vgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </left>
+                     <center>
+                        <VBox spacing="5.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <TextField fx:id="unitNameDetails" maxWidth="-Infinity" prefHeight="30.0" prefWidth="300.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateButtonAction" prefHeight="30.0" text="&lt;- Update" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="unitDescriptionDetails" minWidth="400.0" />
+                              <Separator>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Separator>
+                              <VBox fx:id="inOutsVbox" spacing="5.0" />
+                           </children>
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                           <padding>
+                              <Insets bottom="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+            <Tab closable="false" text="Alokacja">
+              <content>
+                  <HBox spacing="5.0">
+                     <children>
+                        <TreeView fx:id="configTreeView" prefHeight="400.0" prefWidth="260.0" />
+                        <TableView prefWidth="200.0" HBox.hgrow="SOMETIMES">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Szafa" />
+                            <TableColumn prefWidth="75.0" text="Listwa" />
+                              <TableColumn prefWidth="75.0" text="Zacisk +" />
+                              <TableColumn prefWidth="75.0" text="Zacisk -" />
+                          </columns>
+                        </TableView>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="50.0" spacing="20.0">
+                           <children>
+                              <Button mnemonicParsing="false" text="&lt;-" />
+                              <Button mnemonicParsing="false" text="-&gt;" />
+                           </children>
+                        </VBox>
+                        <TableView prefWidth="200.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Urządzenie" />
+                            <TableColumn prefWidth="75.0" text="Sygnał" />
+                              <TableColumn prefWidth="75.0" text="Column X" />
+                          </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+              </content>
+            </Tab>
+            <Tab closable="false" text="Konfiguracja">
+               <content>
+                  <HBox spacing="5.0">
+                     <children>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Szafy" />
+                              <ListView fx:id="konfCabListView" editable="true" VBox.vgrow="SOMETIMES" />
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <Button fx:id="konfCabAddBtn" mnemonicParsing="false" onAction="#konfCabAddBtnAction" text="Dodaj" />
+                                    <Button fx:id="konfCabRemBtn" mnemonicParsing="false" onAction="#konfCabRemBtnAction" text="Usuń" />
+                                    <Button mnemonicParsing="false" text="Wyżej" />
+                                    <Button layoutX="111.0" layoutY="10.0" mnemonicParsing="false" text="Niżej" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="15.0" layoutY="15.0" spacing="5.0">
+                           <children>
+                              <Label text="Moduły" />
+                              <ListView fx:id="konfModListView" editable="true" VBox.vgrow="SOMETIMES" />
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <Button fx:id="konfModAddBtn" mnemonicParsing="false" onAction="#konfModAddBtnAction" text="Dodaj" />
+                                    <Button fx:id="konfModRemBtn" mnemonicParsing="false" onAction="#konfModRemBtnAction" text="Usuń" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <GridPane hgap="10.0" vgap="5.0" HBox.hgrow="SOMETIMES">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="10.0" prefWidth="130.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="510.0" minWidth="10.0" prefWidth="422.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="-Infinity" minHeight="0.0" prefHeight="17.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="0.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="0.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="0.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Właściwości modułów" GridPane.columnSpan="2147483647" />
+                              <Label text="Typ modułu" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                              <Label text="Rodzaj I/O" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                              <ComboBox prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox prefWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Liczba I/O" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                              <Spinner prefWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</VBox>
