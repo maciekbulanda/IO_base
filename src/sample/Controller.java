@@ -127,6 +127,7 @@ public class Controller {
         DataHandler.writeData("plik.db", unitsList);
     }
 
+
     @FXML private TreeView<HardwareItem> configTreeView;
 
     private void changeSelection(Unit oldValue,Unit newValue) {
