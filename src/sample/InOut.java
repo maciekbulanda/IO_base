@@ -6,7 +6,7 @@ public class InOut implements Serializable {
     private static final long serialVersionUID = -3770112338614965865L;
     private String inOutName;
     private String inOutDesc;
-    private String inOutType;
+    private IoType inOutType;
     private HardwareItem parent;
     //private  inOutCab;
 
@@ -26,11 +26,11 @@ public class InOut implements Serializable {
         this.inOutDesc = desc;
     }
 
-    public String getInOutType() {
+    public IoType getInOutType() {
         return this.inOutType;
     }
 
-    public void setInOutType(String type) {
+    public void setInOutType(IoType type) {
         this.inOutType = type;
     }
 

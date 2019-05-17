@@ -182,10 +182,10 @@
                               <Label text="Właściwości modułów" GridPane.columnSpan="2147483647" />
                               <Label text="Typ modułu" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                               <Label text="Rodzaj I/O" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                              <ComboBox prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <ComboBox prefWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="konfModCodeCombo" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="konfModTypeCombo" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label text="Liczba I/O" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                              <Spinner prefWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Spinner fx:id="konfIoNumSpin" editable="true" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
                      </children>

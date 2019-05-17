@@ -2,6 +2,8 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -42,7 +44,14 @@ public class Controller {
     @FXML
     private ListView<HardwareItem> konfModListView;
 
-    @FXML VBox inOutsVbox;
+    @FXML
+    private VBox inOutsVbox;
+
+    @FXML
+    private ComboBox<IoType> konfModTypeCombo;
+
+    @FXML
+    private Spinner<Integer> konfIoNumSpin;
 
     @FXML
     private void initialize() {
@@ -95,6 +104,40 @@ public class Controller {
                 return item;
             }
         }));
+        konfModTypeCombo.getItems().setAll(IoType.values());
+        konfIoNumSpin.setValueFactory(new SpinnerValueFactory<Integer>() {
+            @Override
+            public void decrement(int i) {
+                if (getValue() == null)
+                    setValue(4);
+                else {
+                    int newValue = getValue();
+                    if (newValue % 2 == 0)
+                        newValue = newValue / 2;
+                    else newValue--;
+                    setValue(newValue<2 ? 2 : newValue);
+                }
+            }
+
+            @Override
+            public void increment(int i) {
+                if (getValue() == null)
+                    setValue(8);
+                else {
+                    int newValue = getValue();
+                    if (newValue % 2 == 0)
+                        newValue = newValue * 2;
+                    else newValue++;
+                    setValue(newValue>32 ? 32 : newValue);
+                }
+            }
+        });
+        konfIoNumSpin.getEditor().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                konfIoNumSpin.getValueFactory().setValue(Integer.parseInt(konfIoNumSpin.getEditor().getText()));
+            }
+        });
     }
     @FXML
     private void addButtonAction() {
@@ -126,7 +169,6 @@ public class Controller {
     @FXML private void saveButtonAction() {
         DataHandler.writeData("plik.db", unitsList);
     }
-
 
     @FXML private TreeView<HardwareItem> configTreeView;
 
@@ -163,7 +205,7 @@ public class Controller {
         CheckBox ioSelected = new CheckBox();
         TextField ioNameText = new TextField();
         TextField ioDescText = new TextField();
-        ComboBox<String> ioType = new ComboBox<>();
+        ComboBox<IoType> ioType = new ComboBox<>();
         ComboBox<HardwareItem> ioCabinetCB = new ComboBox<>();
         ComboBox<String> ioModule = new ComboBox<>();
         ComboBox<String> ioChannel = new ComboBox<>();
@@ -171,7 +213,7 @@ public class Controller {
         ioNameText.setPrefWidth(80.0);
         ioDescText.setPromptText("Opis...");
         ioDescText.setPrefWidth(200.0);
-        ioType.getItems().addAll("DI", "DO", "AI", "AO", "F-DI", "F-DO");
+        ioType.getItems().setAll(IoType.values());
         ioType.setPrefWidth(75.0);
         ioCabinetCB.setPrefWidth(140.0);
         ioCabinetCB.getItems().addAll(mainHardwareList);
@@ -201,7 +243,7 @@ public class Controller {
             HBox row = (HBox)(rows.get(i));
             inOut.setInOutName(((TextField)(row.getChildren().get(1))).getText()); //nazwa
             inOut.setInOutDesc(((TextField)(row.getChildren().get(2))).getText()); //opis
-            inOut.setInOutType(((ComboBox<String>)(row.getChildren().get(3))).getValue()); //typ
+            inOut.setInOutType(((ComboBox<IoType>)(row.getChildren().get(3))).getValue()); //typ
             //inOut.
             unit.getInOuts().add(inOut);
         }
